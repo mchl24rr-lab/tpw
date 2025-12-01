@@ -33,11 +33,23 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
+      # 🔑 PASO CORREGIDO: Mover el contenido de 'ProyectoTiendaTech' a un directorio de despliegue
+      # (La carpeta 'dist' es una convención, pero asegura que solo el contenido deseado se suba)
+      - name: Prepare Content for Deployment
+        run: |
+          mkdir dist
+          # Mueve todo el contenido de ProyectoTiendaTech a la carpeta 'dist'
+          cp -r ProyectoTiendaTech/* dist/
+          # Nota: Si tienes archivos ocultos (.htaccess, .gitignore, etc.) que quieres mover:
+          # cp -r ProyectoTiendaTech/. dist/
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './ProyectoTiendaTech'
+          # Ahora subimos el contenido de 'dist' (que es el contenido de ProyectoTiendaTech)
+          path: './dist'
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
