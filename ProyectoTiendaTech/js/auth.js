@@ -14,7 +14,7 @@
     const msgSesion = document.getElementById('msg-sesion');
     const btnUser = document.getElementById('btn-user');
 
-    // ✨ NUEVA REFERENCIA: Obtenemos el modal del Carrito
+    // Referencia para el modal del Carrito
     const iframeCartSection = document.getElementById('iframe-cart');
 
     if (!btnLogin || !btnRegister || !iframeSection || !loginIframe || !iframeClose || !msgSesion || !btnUser) {
@@ -46,7 +46,8 @@
 
     if (!btnLogin.dataset.authAttached) {
       btnLogin.addEventListener('click', () => {
-        loginIframe.src = 'login.html?view=login';
+        // 🔑 RUTA ABSOLUTA CORREGIDA
+        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -56,7 +57,8 @@
 
     if (!btnRegister.dataset.authAttached) {
       btnRegister.addEventListener('click', () => {
-        loginIframe.src = 'login.html?view=register';
+        // 🔑 RUTA ABSOLUTA CORREGIDA
+        loginIframe.src = '/ProyectoTiendaTech/login.html?view=register';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -90,17 +92,18 @@
     });
 
 
-   // MODIFICACIÓN A ESTE BLOQUE: AÑADIMOS LA LÓGICA PARA ABRIR EL LOGIN DESDE EL CARRITO
+   // MODIFICACIÓN: Lógica para abrir el login desde el carrito
     window.addEventListener('message', (event) => {
       if (event.data === 'login_success') {
         iframeSection.style.display = 'none';
         document.body.style.overflow = 'auto';
         actualizarUI();
       }
-      // ✨ NUEVO: Si el carrito solicita abrir el modal de login
+      // Si el carrito solicita abrir el modal de login
       if (event.data === 'open_login_modal') {
         iframeCartSection.style.display = 'none';
-        loginIframe.src = 'login.html?view=login';
+        // 🔑 RUTA ABSOLUTA CORREGIDA
+        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -109,7 +112,6 @@
 
     return true;
   }
-
 
 
   let retries = 0;
@@ -129,4 +131,3 @@
   observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
 
 })();
-
