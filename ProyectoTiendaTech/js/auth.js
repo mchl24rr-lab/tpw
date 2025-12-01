@@ -21,7 +21,8 @@
     // Si la URL actual está en un subdirectorio (como 'productos/'), usamos '../' para subir de nivel.
     // De lo contrario, usamos la ruta simple 'login.html' (estamos en la raíz).
     const currentPath = window.location.pathname;
-    const loginBasePath = currentPath.includes('/productos/') ? '../login.html' : 'login.html';
+    const isSubdirectory = currentPath.includes('/productos/') || currentPath.includes('/comparativas/');
+    const loginBasePath = isSubdirectory ? '../login.php' : 'login.php';
 
 
     if (!btnLogin || !btnRegister || !iframeSection || !loginIframe || !iframeClose || !msgSesion || !btnUser) {
