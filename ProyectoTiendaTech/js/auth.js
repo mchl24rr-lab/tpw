@@ -17,6 +17,13 @@
     // Referencia para el modal del Carrito
     const iframeCartSection = document.getElementById('iframe-cart');
 
+    // 💡 LÓGICA DINÁMICA PARA LA RUTA DEL LOGIN 💡
+    // Si la URL actual está en un subdirectorio (como 'productos/'), usamos '../' para subir de nivel.
+    // De lo contrario, usamos la ruta simple 'login.html' (estamos en la raíz).
+    const currentPath = window.location.pathname;
+    const loginBasePath = currentPath.includes('/productos/') ? '../login.html' : 'login.html';
+
+
     if (!btnLogin || !btnRegister || !iframeSection || !loginIframe || !iframeClose || !msgSesion || !btnUser) {
       return false; 
     }
@@ -46,8 +53,8 @@
 
     if (!btnLogin.dataset.authAttached) {
       btnLogin.addEventListener('click', () => {
-        // 🔑 RUTA ABSOLUTA CORREGIDA
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
+        // ➡️ USANDO RUTA DINÁMICA
+        loginIframe.src = `${loginBasePath}?view=login`;
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -57,8 +64,8 @@
 
     if (!btnRegister.dataset.authAttached) {
       btnRegister.addEventListener('click', () => {
-        // 🔑 RUTA ABSOLUTA CORREGIDA
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=register';
+        // ➡️ USANDO RUTA DINÁMICA
+        loginIframe.src = `${loginBasePath}?view=register`;
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -92,7 +99,7 @@
     });
 
 
-   // MODIFICACIÓN: Lógica para abrir el login desde el carrito
+   // Lógica para abrir el login desde el carrito
     window.addEventListener('message', (event) => {
       if (event.data === 'login_success') {
         iframeSection.style.display = 'none';
@@ -102,8 +109,8 @@
       // Si el carrito solicita abrir el modal de login
       if (event.data === 'open_login_modal') {
         iframeCartSection.style.display = 'none';
-        // 🔑 RUTA ABSOLUTA CORREGIDA
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
+        // ➡️ USANDO RUTA DINÁMICA
+        loginIframe.src = `${loginBasePath}?view=login`;
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
