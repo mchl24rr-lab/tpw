@@ -46,7 +46,7 @@
 
     if (!btnLogin.dataset.authAttached) {
       btnLogin.addEventListener('click', () => {
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
+        loginIframe.src = 'login.html?view=login';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -56,7 +56,7 @@
 
     if (!btnRegister.dataset.authAttached) {
       btnRegister.addEventListener('click', () => {
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=register';
+        loginIframe.src = 'login.html?view=register';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
@@ -100,7 +100,7 @@
       // ✨ NUEVO: Si el carrito solicita abrir el modal de login
       if (event.data === 'open_login_modal') {
         iframeCartSection.style.display = 'none';
-        loginIframe.src = '/ProyectoTiendaTech/login.html?view=login';
+        loginIframe.src = 'login.html?view=login';
         iframeSection.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         loginIframe.focus();
