@@ -22,7 +22,7 @@
     // De lo contrario, usamos la ruta simple 'login.html' (estamos en la raíz).
     const currentPath = window.location.pathname;
     const isSubdirectory = currentPath.includes('/productos/') || currentPath.includes('/comparativas/');
-    const loginBasePath = isSubdirectory ? '../login.php' : 'login.php';
+    const loginBasePath = isSubdirectory ? '../login.html' : 'login.html';
 
 
     if (!btnLogin || !btnRegister || !iframeSection || !loginIframe || !iframeClose || !msgSesion || !btnUser) {
